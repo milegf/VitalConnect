@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Declaración de modelo -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Este proyecto padre hereda de spring-boot-starter-parent -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.5</version>
+        <relativePath/> <!-- Lo toma desde el repositorio Maven -->
+    </parent>
+
+    <!-- Datos del proyecto raíz -->
+    <groupId>com.vitalconnect</groupId>
+    <artifactId>vitalconnect</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>VitalConnect Microservices</name>
+    <description>Proyecto raíz para los microservicios de VitalConnect</description>
+
+    <!-- Módulos del proyecto -->
+    <modules>
+        <module>user-profile-service</module>
+        <module>notifications-service</module>
+        <module>admin-panel-service</module>
+    </modules>
+
+    <!-- Propiedades en común que tienen los microservicios -->
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+
+    <!-- Versiones de dependencias comunes para todos los microservicios -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>3.4.5</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- Plugins comunes para gestión centralizada -->
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- Plugin para la compilación de Spring Boot -->
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
