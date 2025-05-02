@@ -1,4 +1,5 @@
 package com.vitalconnect.userprofile.service;
+import com.vitalconnect.userprofile.exception.ResourceNotFoundException;
 
 import com.vitalconnect.userprofile.model.UserProfile;
 import com.vitalconnect.userprofile.repository.UserProfileRepository;
@@ -27,8 +28,9 @@ public class UserProfileService {
     }
 
     // Obtener perfil por ID
-    public Optional<UserProfile> getUserProfileById(int id) {
-        return userProfileRepository.findById(id);
+    public UserProfile getUserProfileById(int id) {
+        return userProfileRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Usuario con ID " + id + " no encontrado."));
     }
 
     // Obtener perfil por RUT

@@ -34,15 +34,14 @@ public class UserProfileController {
     }
 
     // Obtener perfil por ID
-    @GetMapping("api/v1/users/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<UserProfile> getUserProfileById(@PathVariable int id) {
-        return userProfileService.getUserProfileById(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        UserProfile userProfile = userProfileService.getUserProfileById(id);
+        return ResponseEntity.ok(userProfile);
     }
 
     // Actualizar perfil
-    @PutMapping("api/v1/users/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<UserProfile> updateUserProfile(@PathVariable int id, @Valid @RequestBody UserProfile userProfile) {
         return userProfileService.updateUserProfile(id, userProfile)
                 .map(ResponseEntity::ok)
@@ -50,7 +49,7 @@ public class UserProfileController {
     }
 
     // Eliminar perfil
-    @DeleteMapping("api/v1/users/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUserProfile(@PathVariable int id) {
         userProfileService.deleteUserProfile(id);
         return ResponseEntity.noContent().build();
