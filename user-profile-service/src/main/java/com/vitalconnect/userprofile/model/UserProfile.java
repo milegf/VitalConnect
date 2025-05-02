@@ -42,17 +42,17 @@ public class UserProfile {
     @Size(max = 100) // valida que el campo no exceda los 100 caracteres
     private String nombre;
 
-    @NotBlank(message = "Es obligatorio registrar un apellido.") // valida que el campo no esté vacío
-    @Size(max = 100) // valida que el campo no exceda los 100 caracteres
+    @NotBlank(message = "Es obligatorio registrar un apellido.")
+    @Size(max = 100)
     private String apellido;
 
     @JsonIgnore // ignora el atributo en el archivo json
-    @NotBlank(message = "Es obligatorio registrar un RUN.") // valida que el campo no esté vacío
+    @Size(max = 1) // valida longitud ya que no puede usar NotBlank un int
     @Column(unique = true) // valida que el campo sea único
     private int rut;
 
     @JsonIgnore // ignora el atributo en el archivo json
-    @NotBlank(message = "Es obligatorio registrar un dígito verificador") // valida que el campo no esté vacío
+    @NotBlank(message = "Es obligatorio registrar un dígito verificador")
     @Size(max = 1) // valida que el campo no exceda 1 caracter
     private String dvRut;
 
