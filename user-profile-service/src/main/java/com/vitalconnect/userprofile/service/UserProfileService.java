@@ -1,0 +1,62 @@
+package com.vitalconnect.userprofile.service;
+
+import com.vitalconnect.userprofile.model.UserProfile;
+import com.vitalconnect.userprofile.repository.UserProfileRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class UserProfileService {
+    private final UserProfileRepository userProfileRepository;
+
+    @Autowired
+    public UserProfileService(UserProfileRepository userProfileRepository) {
+        this.userProfileRepository = userProfileRepository;
+    }
+
+    // Crear nuevo perfil de usuario
+    public UserProfile createUserProfile(UserProfile userProfile) {
+        return userProfileRepository.save(userProfile);
+    }
+
+    // Obtener todos los perfiles de usuario
+    public List<UserProfile> getAllUserProfiles() {
+        return userProfileRepository.findAll();
+    }
+
+    // Obtener perfil por ID
+    public Optional<UserProfile> getUserProfileById(int id) {
+        return userProfileRepository.findById(id);
+    }
+
+    // Obtener perfil por RUT
+    public Optional<UserProfile> getUserProfileByRut(int rut) {
+        return userProfileRepository.findByRut(rut);
+    }
+
+    // Actualizar perfil
+    public Optional<UserProfile> updateUserProfile(int id, UserProfile updatedProfile) {
+        return userProfileRepository.findById(id).map(existing -> {
+            existing.setNombre(updatedProfile.getNombre());
+            existing.setApellido(updatedProfile.getApellido());
+            existing.setRut(updatedProfile.getRut());
+            existing.setDvRut(updatedProfile.getDvRut());
+            existing.setEmail(updatedProfile.getEmail());
+            existing.setEspecialidades(updatedProfile.getEspecialidades());
+            existing.setRoles(updatedProfile.getRoles());
+            return userProfileRepository.save(existing);
+        });
+    }
+
+    // Eliminar perfil
+    public boolean deleteUserProfile(int id) {
+        if (userProfileRepository.existsById(id)) {
+            userProfileRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+}
