@@ -26,8 +26,6 @@ import java.util.Set;
 
 // Anotaciones de Lombok para la generación automática de código.
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -46,21 +44,9 @@ public class UserProfile {
     @Size(max = 100)
     private String apellido;
 
-    @JsonIgnore // ignora el atributo en el archivo json
-    @Size(max = 1) // valida longitud ya que no puede usar NotBlank un int
+    @NotBlank(message = "Es obligatorio registrar un rut.")
     @Column(unique = true) // valida que el campo sea único
-    private int rut;
-
-    @JsonIgnore // ignora el atributo en el archivo json
-    @NotBlank(message = "Es obligatorio registrar un dígito verificador")
-    @Size(max = 1) // valida que el campo no exceda 1 caracter
-    private String dvRut;
-
-    @Transient // indica que este campo no se almacena en la base de datos
-    @com.fasterxml.jackson.annotation.JsonProperty("RUN") // expone el campo en la respuesta JSON
-    public String getRun() {
-        return this.rut + "-" + this.dvRut;
-    }
+    private String rut;
 
     @NotBlank(message = "Es obligatorio registrar un correo.")
     @Size(max = 255, message = "El mail no puede exceder los 255 caracteres.")

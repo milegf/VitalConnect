@@ -3,6 +3,7 @@ package com.vitalconnect.userprofile.controller;
 import com.vitalconnect.userprofile.model.UserProfile;
 import com.vitalconnect.userprofile.service.UserProfileService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,8 @@ import java.util.List;
 
 public class UserProfileController {
 
-    private final UserProfileService userProfileService;
+    @Autowired
+    private UserProfileService userProfileService;
 
     public UserProfileController(UserProfileService userProfileService) {
         this.userProfileService = userProfileService;
