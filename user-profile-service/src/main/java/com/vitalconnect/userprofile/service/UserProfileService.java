@@ -5,12 +5,16 @@ import com.vitalconnect.userprofile.model.UserProfile;
 import com.vitalconnect.userprofile.repository.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserProfileService {
-    private final UserProfileRepository userProfileRepository;
+
+    @Autowired
+    private UserProfileRepository userProfileRepository;
 
     @Autowired
     public UserProfileService(UserProfileRepository userProfileRepository) {
@@ -44,7 +48,6 @@ public class UserProfileService {
             existing.setNombre(updatedProfile.getNombre());
             existing.setApellido(updatedProfile.getApellido());
             existing.setRut(updatedProfile.getRut());
-            existing.setDvRut(updatedProfile.getDvRut());
             existing.setEmail(updatedProfile.getEmail());
             existing.setEspecialidades(updatedProfile.getEspecialidades());
             existing.setRoles(updatedProfile.getRoles());
