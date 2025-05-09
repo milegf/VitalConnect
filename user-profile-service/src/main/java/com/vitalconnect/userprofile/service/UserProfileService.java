@@ -3,6 +3,7 @@ import com.vitalconnect.userprofile.exception.ResourceNotFoundException;
 
 import com.vitalconnect.userprofile.model.UserProfile;
 import com.vitalconnect.userprofile.repository.UserProfileRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,15 +12,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class UserProfileService {
 
     @Autowired
     private UserProfileRepository userProfileRepository;
 
-    @Autowired
-    public UserProfileService(UserProfileRepository userProfileRepository) {
-        this.userProfileRepository = userProfileRepository;
-    }
+//    @Autowired
+//    public UserProfileService(UserProfileRepository userProfileRepository) {
+//        this.userProfileRepository = userProfileRepository;
+//    }
 
     // Crear nuevo perfil de usuario
     public UserProfile createUserProfile(UserProfile userProfile) {

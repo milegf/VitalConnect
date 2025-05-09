@@ -29,7 +29,6 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
 public class UserProfile {
 
     @Id // le señala la columna que es la clave primaria
