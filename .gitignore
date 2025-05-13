@@ -163,8 +163,6 @@ buildNumber.properties
 
 # Archivos de configuración sensibles
 .env
-application.properties
-application.yml
 
 # Base de datos (si generas dumps locales)
 *.sql
